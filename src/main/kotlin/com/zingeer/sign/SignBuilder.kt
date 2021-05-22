@@ -9,7 +9,8 @@ import org.bukkit.entity.Player
 import java.util.*
 
 class SignBuilder(
-    val lines: List<String>,
+    val lines: Array<String>,
+    val texture: SignTexture,
     val builder: SignPacketCompleteEvent.() -> Unit
 ) {
     fun open(player: Player): SignBuilder {
@@ -30,7 +31,7 @@ class SignBuilder(
         val craftSign = Reflection.getOBCClass("block.CraftSign")
 
         val components = craftSign.getMethod("sanitizeLines", Array<String>::class.java)
-            .invoke(craftSign, arrayOf("", "---------------", "Имя питомца", "---------------"))
+            .invoke(craftSign, lines)
 
         val signLines = sign.javaClass.getField("lines").get(sign)
         System.arraycopy(components, 0, signLines, 0, (signLines as Array<*>).size)
@@ -46,7 +47,7 @@ class SignBuilder(
             .newInstance(worldHandler, blockPosition).apply {
                 javaClass.getField("block").set(
                     this, craftMagicNumber.getMethod("getBlock", Material::class.java, Byte::class.java)
-                        .invoke(this, Material.OAK_SIGN, 0.toByte())
+                        .invoke(this, texture.material, 0.toByte())
                 )
             }
 
