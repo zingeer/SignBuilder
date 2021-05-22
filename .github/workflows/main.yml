@@ -33,7 +33,7 @@ jobs:
                 maven ("https://jitpack.io/")
             }
             dependencies {
-                implementation("com.zingeer", "SignBuilder", "${{ steps.get_tag.outputs.tag }}")
+                implementation("com.github.zingeer", "SignBuilder", "${{ steps.get_tag.outputs.tag }}")
             }
             ```
           draft: false

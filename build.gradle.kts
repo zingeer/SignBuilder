@@ -22,6 +22,6 @@ dependencies {
 }
 
 tasks {
-    compileKotlin { kotlinOptions.jvmTarget = "15" }
+    compileKotlin { kotlinOptions.jvmTarget = "1.8" }
     compileJava { options.encoding = "UTF-8" }
 }
