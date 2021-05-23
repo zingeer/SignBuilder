@@ -1,6 +1,6 @@
 # SignBuilder 
 Simple bulder sign menu on kotlin.
-Dependency:
+  Dependency:
 ```kotlin
 repositories {
     maven ("https://jitpack.io/")
